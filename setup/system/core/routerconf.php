@@ -93,7 +93,16 @@ class routerconf{
         http_response_code(404);
         echo "Page not found";
     }
+
+    public function prefix():void{
+        $config = require __DIR__.'/../../config/config.php';
+        echo "<pre>";
+        print_r($config);
+    }
 }
+
+$instance = new routerconf();
+$instance->prefix();
 
 
 

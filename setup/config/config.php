@@ -3,14 +3,14 @@
 return [
     "Prefix"=>[
         "web" => "",
-        "api" => ""
+        "api" => "/api"
     ],
 
     "Db" =>[
-        "host" => "",
-        "port" => "",
-        "dbname" => "",
-        "username" => "",
+        "host" => "localhost",
+        "port" => 3306,
+        "dbname" => "xeldocs",
+        "username" => "root",
         "password" => ""
     ]
 ];
