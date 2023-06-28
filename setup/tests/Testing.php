@@ -12,4 +12,4 @@
             $this->assertEquals('halo', $test);
         }
     }
-?> 
+
