@@ -5,7 +5,9 @@ use devise\Service\Service;
 
 class bootstrap {
 
-    public static function autoload() {}
+    public static function autoload() {
+
+    }
 
     public function __construct()
     {

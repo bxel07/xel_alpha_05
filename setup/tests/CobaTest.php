@@ -1,5 +1,5 @@
 <?php
-
+namespace setup\tests;
 use devise\Service\Test;
 use PHPUnit\Framework\TestCase;
 class CobaTest extends TestCase
