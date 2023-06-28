@@ -13,7 +13,7 @@ use PDOException;
 
 class BaseConn {
     // attribute untuk koneksi pdo
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct()
     {
@@ -35,7 +35,7 @@ class BaseConn {
     }
 
     // untuk testing
-    public function getPDO(){
+    public function getPDO() :PDO{
         return $this->pdo;
     }
 }
