@@ -5,8 +5,7 @@ namespace setup\system\core;
 class routerconf1
 {
     protected  array $routes = [];
-    protected array $webroute = [];
-    protected array $apiroute = [];
+
 
     // main logic to controller method path for invoke and navigate url
     protected  function add(string $prefix, string $method, string $path, string $controller, string $function, array $middleware = []): void {
@@ -15,23 +14,25 @@ class routerconf1
         $x = $data["web"];
         $y = $data["api"];
 
+        $prefixpath = '';
         if(strcmp($prefix,"web")===0){
-            $prefixpath = $x . $path;
+            $prefixpath = $x ;
         } elseif (strcmp($prefix,"api")===0) {
-            $prefixpath = $y . $path;
+            $prefixpath = $y ;
 
         } else {
             echo "error prefix must setup";
         }
 
+        $fullPath = $prefixpath . $path;
+
         if($controller[0] !== '\\') {
             $controller = '\\devise\\Service\\'. $controller;
         }
 
-
         $this->routes[] = [
             'method' => $method,
-            'path' => $prefixpath,
+            'path' => $fullPath,
             'controller' => $controller,
             'function' => $function,
             'middleware' => $middleware
@@ -39,7 +40,7 @@ class routerconf1
     }
 
     // main runner
-    protected function run(): void {
+    public function run(): void {
         $path = filter_var($_SERVER['PATH_INFO'] ?? "/", FILTER_SANITIZE_URL);
         $method = $_SERVER['REQUEST_METHOD'];
 
