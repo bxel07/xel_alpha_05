@@ -8,8 +8,8 @@ class ComposerStaticInitdf2f5b4213ca90ad46a47bf2bd426b40
 {
     public static $files = array (
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
-        '972fda704d680a3a53c68e34e193cb22' => __DIR__ . '/..' . '/react/promise-timer/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'cea474b4340aa9fa53661e887a21a316' => __DIR__ . '/..' . '/react/promise-stream/src/functions_include.php',
         'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -42,7 +42,6 @@ class ComposerStaticInitdf2f5b4213ca90ad46a47bf2bd426b40
             'RingCentral\\Psr7\\' => 17,
             'React\\Stream\\' => 13,
             'React\\Socket\\' => 13,
-            'React\\Promise\\Timer\\' => 20,
             'React\\Promise\\Stream\\' => 21,
             'React\\Promise\\' => 14,
             'React\\Http\\' => 11,
@@ -52,12 +51,14 @@ class ComposerStaticInitdf2f5b4213ca90ad46a47bf2bd426b40
         ),
         'P' => 
         array (
+            'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
         ),
         'G' => 
         array (
+            'GuzzleHttp\\Psr7\\' => 16,
             'GrahamCampbell\\ResultType\\' => 26,
         ),
         'F' => 
@@ -108,10 +109,6 @@ class ComposerStaticInitdf2f5b4213ca90ad46a47bf2bd426b40
         array (
             0 => __DIR__ . '/..' . '/react/socket/src',
         ),
-        'React\\Promise\\Timer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/promise-timer/src',
-        ),
         'React\\Promise\\Stream\\' => 
         array (
             0 => __DIR__ . '/..' . '/react/promise-stream/src',
@@ -136,9 +133,14 @@ class ComposerStaticInitdf2f5b4213ca90ad46a47bf2bd426b40
         array (
             0 => __DIR__ . '/..' . '/react/cache/src',
         ),
+        'Psr\\Http\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-server-handler/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'PhpParser\\' => 
         array (
@@ -147,6 +149,10 @@ class ComposerStaticInitdf2f5b4213ca90ad46a47bf2bd426b40
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (

@@ -40,7 +40,7 @@ class routerconf1
     }
 
     // main runner
-    public function run(): void {
+    protected function run(): void {
         $path = filter_var($_SERVER['PATH_INFO'] ?? "/", FILTER_SANITIZE_URL);
         $method = $_SERVER['REQUEST_METHOD'];
 
