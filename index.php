@@ -7,8 +7,6 @@ if (str_starts_with($path, "/api/")) {
 } elseif (preg_match("#^/[^/]*$#", $path)) {
     require_once __DIR__."/router/web.php";
 } else {
-    // Handle invalid paths or other scenarios
-    echo "Invalid path";
     exit;
 }
 

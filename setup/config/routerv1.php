@@ -6,7 +6,7 @@ use \setup\interface\appRouter;
 
 class routerv1 extends routerconf1 implements appRouter {
     //use RequestHandler;
-    public $prefix = "";
+    public string $prefix = "";
 
     public function setPrefix(string $prefix): void
     {

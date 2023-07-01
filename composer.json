@@ -23,6 +23,9 @@
         "react/event-loop": "^1.1",
         "react/http": "1.6",
         "vlucas/phpdotenv": "^5.5",
-        "phpunit/phpunit": "^10.2"
+        "phpunit/phpunit": "^10.2",
+        "psr/http-message": "^1.1",
+        "guzzlehttp/psr7": "^2.5",
+        "psr/http-server-handler": "^1.0"
     }
 }

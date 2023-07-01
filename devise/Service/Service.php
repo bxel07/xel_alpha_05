@@ -17,7 +17,15 @@ class Service{
 
     public function test() {
          $instance = new BaseData();
-         $instance->connect();
+         $con  = $instance->connect();
+
+         $con->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
+         $stmt = $con->prepare("SELECT id, title, content FROM news");
+         $stmt->execute();
+         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+         echo "<pre>";
+         print_r($result);
+
         echo "testing result";
     }
 }
