@@ -6,7 +6,8 @@ new setup\config\bootstrap();
 $routerv = new routerv1();
 
 $routerv->setPrefix("web");
+
 $routerv->get('/', Service::class, 'index');
-$routerv->get('/test', Service::class,'test');
+$routerv->get('/hero/{id}', Service::class,'test');
 $routerv->exec();
 

@@ -7,5 +7,5 @@ $routerv = new routerv1();
 
 $routerv->setPrefix("api");
 $routerv->get('/ono', Service::class, 'index');
-$routerv->get('/dea', Service::class,'test');
+$routerv->get('/dea/{id}', Service::class,'test');
 $routerv->exec();

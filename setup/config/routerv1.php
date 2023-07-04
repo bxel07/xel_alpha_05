@@ -1,11 +1,9 @@
 <?php
 namespace setup\config;
-//use \setup\utilityclass\conf_router\RequestHandler;
 use \setup\system\core\routerconf1;
 use \setup\interface\appRouter;
 
 class routerv1 extends routerconf1 implements appRouter {
-    //use RequestHandler;
     public string $prefix = "";
 
     public function setPrefix(string $prefix): void
