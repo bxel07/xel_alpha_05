@@ -3,7 +3,7 @@
 
     use PHPUnit\Framework\TestCase;
     
-    Class  extends TestCase
+    Class x extends TestCase
     {
         public function test()
         {

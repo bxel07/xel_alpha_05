@@ -62,6 +62,7 @@ class routerconf1
         foreach ($this->routes as $route) {
             $pattern = "#^" . preg_replace('/{(\w+)}/', '(?<$1>[^/]+)', $route['path']) . "$#";
 
+
             if (preg_match($pattern, $path, $variables) && $method === $route['method']) {
                 $route['variables'] = $variables;
                 return $route;
@@ -131,5 +132,4 @@ class routerconf1
         echo $errorDetails . $errorGuide;
         exit; // Add this line to prevent further execution after displaying the error and guide.
     }
-
 }
