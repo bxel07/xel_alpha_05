@@ -2,7 +2,7 @@
     "name": "xel/framework",
     "type": "project",
     "scripts": {
-        "run-test": "php vendor/bin/phpunit setup/tests/",
+        "run-test": "php vendor/run-test.php",
         "make-test": "php vendor/make-test.php"
     },
     "autoload": {
