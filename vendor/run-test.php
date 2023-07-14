@@ -1,10 +1,10 @@
 <?php
 $arg = $argv[1];
-if ($arg = "all") {
-    $output = shell_exec("php vendor/bin/phpunit setup/tests/");
-    echo "<pre>$output</pre>";
-} elseif($arg) {
+if ($arg) {
     $output = shell_exec("php vendor/bin/phpunit setup/tests/$arg.php");
-    echo "<pre>$output</pre>";
+    echo $output;
+} else {
+    $output = shell_exec("php vendor/bin/phpunit");
+    echo $output;
 }
 

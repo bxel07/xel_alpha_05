@@ -1,10 +1,10 @@
+ 
 <?php
     require_once 'vendor/autoload.php';
-//    require_once __DIR__.'/../vendor/autoload.php';
     use PHPUnit\Framework\TestCase;
     use setup\config\bootstrap;
     
-    Class Angga extends TestCase
+    Class AnggaTest extends TestCase
     {
         public function test()
         {

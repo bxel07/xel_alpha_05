@@ -5,6 +5,10 @@ use devise\Service\Service;
 
 class bootstrap {
 
+    public $path = __DIR__.'/../../devise/Service/';
+    public $class = '/class\s+(\w+)/';
+    public $functions = '/function\s+(\w+)/';
+
     public static function autoload() {
 
     }
@@ -26,24 +30,31 @@ class bootstrap {
         require_once $class;
     }
 
-    public function data_array() {
-        $folderPath = __DIR__.'/../../devise/Service/';
+    public function getData()
+    {
+        $folder = $this->path;
+        $files = scandir($folder);
+        return $files;
+    }
 
-        $files = scandir($folderPath); // Get all files and directories within the folder
-
+    public function getService()
+    {
+        $folderFile = $this->path;
+        $files = $this->getData();
         $classList = [];
 
-        foreach ($files as $file) {
-            $filePath = $folderPath . $file;
+        foreach ($files as $file)
+        {
+            $filePath = $folderFile . $file;
 
-            if (is_file($filePath)) {
-                require_once $filePath; // Require the file if it's a PHP file
-
+            if(is_file($filePath))
+            {
+                require_once $filePath;
                 $source = file_get_contents($filePath); // Get the contents of the file
 
                 // Use regular expressions to extract class and function names
-                $classPattern = '/class\s+(\w+)/';
-                $functionPattern = '/function\s+(\w+)/';
+                $classPattern = $this->class;
+                $functionPattern = $this->functions;
 
                 preg_match_all($classPattern, $source, $classMatches);
                 $className = $classMatches[1][0] ?? null;
@@ -59,21 +70,17 @@ class bootstrap {
             }
         }
 
-        var_dump($classList);
+        return $classList;
     }
-
     public function getValue(string $key, int $value){
-        $x = $this->data_array();
+        $x = $this->getService();
         $dataArr = $x[$key];
         $y = $x[$key][$value];
         $z = $x[$key][0];
-        $namespace = "\\devise\\Service\\" . $z;
+        $namespace = "devise\\Service\\" . $z;
         require_once 'devise/Service/' . $z . ".php";
         $class = new $namespace();
         $clas = $class->$y();
-        return $y;
+        return $clas;
     }
 }
-
-$x = new bootstrap();
-$x->data_array();
