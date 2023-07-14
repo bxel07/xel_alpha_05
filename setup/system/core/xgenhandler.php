@@ -7,7 +7,7 @@ require_once __DIR__ . "/../../../vendor/autoload.php";
 use PDO;
 use setup\baseclass\BaseData;
 
-class handler
+class xgenhandler
 {
     public function connection(): PDO
     {
@@ -119,7 +119,7 @@ class handler
 
 
 //Testing purpose
-$instance = new handler();
+$instance = new xgenhandler();
 
 ////Untuk menampilkan semua data //GET
 $instance->showall();
