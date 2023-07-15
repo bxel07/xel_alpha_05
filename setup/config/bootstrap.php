@@ -37,13 +37,27 @@ class bootstrap {
         return $files;
     }
 
-    protected function getExpression($source)
+    protected function getExpression($file, $class)
     {
+        require_once $file;
+        $source = file_get_contents($file); // Get the contents of the file
+
         $classPattern = $this->class;
+        $functionPattern = $this->functions;
 
         preg_match_all($classPattern, $source, $classMatches);
         $className = $classMatches[1][0] ?? null;
-        return $className;
+
+        if (!empty($className)) {
+            preg_match_all($functionPattern, $source, $functionMatches);
+            $functionNames = $functionMatches[1];
+
+            array_unshift($functionNames, $className); // Add class name at index 0
+
+            $class[$className] = $functionNames;
+        }
+
+        return $class;
     }
 
     public function getService()
@@ -58,25 +72,12 @@ class bootstrap {
 
             if(is_file($filePath))
             {
-                require_once $filePath;
-                $source = file_get_contents($filePath); // Get the contents of the file
-
-                // Use regular expressions to extract class and function names
-                $className = $this->getExpression($source);
-
-                if (!empty($className)) {
-                    preg_match_all($this->functions, $source, $functionMatches);
-                    $functionNames = $functionMatches[1];
-
-                    array_unshift($functionNames, $className); // Add class name at index 0
-
-                    $classList[$className] = $functionNames;
-                }
+                $classList = $this->getExpression($filePath, $classList);
             }
         }
-
         return $classList;
     }
+
     public function getValue(string $key, int $value){
         $x = $this->getService();
         $dataArr = $x[$key];
