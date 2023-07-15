@@ -37,6 +37,15 @@ class bootstrap {
         return $files;
     }
 
+    protected function getExpression($source)
+    {
+        $classPattern = $this->class;
+
+        preg_match_all($classPattern, $source, $classMatches);
+        $className = $classMatches[1][0] ?? null;
+        return $className;
+    }
+
     public function getService()
     {
         $folderFile = $this->path;
@@ -53,14 +62,10 @@ class bootstrap {
                 $source = file_get_contents($filePath); // Get the contents of the file
 
                 // Use regular expressions to extract class and function names
-                $classPattern = $this->class;
-                $functionPattern = $this->functions;
-
-                preg_match_all($classPattern, $source, $classMatches);
-                $className = $classMatches[1][0] ?? null;
+                $className = $this->getExpression($source);
 
                 if (!empty($className)) {
-                    preg_match_all($functionPattern, $source, $functionMatches);
+                    preg_match_all($this->functions, $source, $functionMatches);
                     $functionNames = $functionMatches[1];
 
                     array_unshift($functionNames, $className); // Add class name at index 0
