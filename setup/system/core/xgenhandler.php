@@ -5,14 +5,14 @@ namespace setup\system\core;
 require_once __DIR__ . "/../../../vendor/autoload.php";
 
 use PDO;
-use setup\baseclass\BaseData;
+use setup\config\BaseConn;
 
 class xgenhandler
 {
     public function connection(): PDO
     {
-        $instance = new BaseData();
-        return $instance->connect();
+        $instance = new BaseConn();
+        return $instance->getPDO();
     }
 
     public function create(string $title, string $content)
