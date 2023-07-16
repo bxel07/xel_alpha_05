@@ -1,7 +1,6 @@
 <?php
 
 namespace setup\utilityclass\conf_router;
-
 trait RequestHandler{
     private static array $routes = [];
 

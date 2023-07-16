@@ -5,8 +5,6 @@ namespace setup\system\core;
 class routerconf1
 {
     protected  array $routes = [];
-
-
     // main logic to controller method path for invoke and navigate url
     protected  function add(string $prefix, string $method, string $path, string $controller, string $function, array $middleware = []): void {
 
