@@ -1,13 +1,11 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
-use setup\config\routerv1;
+
+use setup\config\Router;
+use setup\middleware\Auth;
 new setup\config\bootstrap();
 
-$routerv = new routerv1();
-
-$routerv->setPrefix("web");
-
-$routerv->get('/', Service::class, 'index');
-$routerv->get('/hero/{id}', Service::class,'test');
-$routerv->exec();
-
+$router = new Router();
+$router->get('/', Service::class, 'index', [Auth::class]);
+$router->get('/test', Service::class,'test');
+$router->exec();
