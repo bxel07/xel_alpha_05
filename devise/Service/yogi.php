@@ -21,24 +21,24 @@ class yogi
 
     public function create() {
         $insert = [
-            "title" => "xel",
-            "content" => "xel framework"
+            "title" => "xelp",
+            "content" => "xxel framework"
         ];
 
-        return $this->instance->insert($insert,"news");
+        return $this->instance->insert("news", $insert);
     }
 
     public function edit() {
         $insert = [
-            "title" => "xeldom",
+            "title" => "xeldoma",
             "content" => "xeldom framework"
         ];
 
-        return $this->instance->renew($insert,"news",5);
+        return $this->instance->renew("news",$insert,6);
     }
 
     public function delete() {
-        return $this->instance->destroy("news", 5);
+        return $this->instance->destroy("news", 4);
     }
 
 }
