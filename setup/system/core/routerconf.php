@@ -4,40 +4,38 @@ namespace setup\system\core;
 
 class routerconf{
     protected static array $routes = [];
+    protected static string $prefixpath ="";
 
-    public static function setroute(string $lineprefix, string $method, string $path, string $controller, string $function, array $middleware = []): void {
-        $config = require_once __DIR__.'/../../../setup/config/config.php';
-        $x = $config['hello'];
-        if (is_array($x)) {
-            // The value is an array
-            var_dump($x);
-        } else {
-            // The value is not an array
-            echo "The returned value is not an array.";
+    // main logic to controller method path for invoke and navigate url
+    protected static function add(string $prefix, string $method, string $path, string $controller, string $function, array $middleware = []): void {
+
+        $data = self::prefix();
+        $x = $data["web"];
+        $y = $data["api"];
+
+        if(strcmp($prefix,"web")){
+            self::$prefixpath =$x.$path;
+        }elseif (strcmp($prefix,"api")) {
+            self::$prefixpath =$y.$path;
+        }
+        else {
+            echo "error prefix must";
         }
 
-
-        // // for prefix helper
-        // if ($lineprefix === $resultkey ) {
-        //     $path = $data['web'].$path;
-        //     echo $path;
-        // } elseif ($lineprefix === $resultkey) {
-        //     $path = $data['api'].$path;
-        //     echo $path;
-        // } else {
-        //     echo "Error Prefix is illegal";
-        // }
         if($controller[0] !== '\\') {
             $controller = '\\devise\\Service\\'. $controller;
         }
 
+
         self::$routes[] = [
             'method' => $method,
-            'path' => $path,
+            'path' => self::$prefixpath,
             'controller' => $controller,
             'function' => $function,
             'middleware' => $middleware
         ];
+        echo "<pre>";
+        var_dump(self::$routes);
     }
 
     // main runner
@@ -93,7 +91,20 @@ class routerconf{
         http_response_code(404);
         echo "Page not found";
     }
+
+    // prefix
+    protected static function prefix():array{
+        $config = require __DIR__."/../../config/config.php";
+        $test = $config["Prefix"];
+        $web = $test["web"];
+        $api = $test["api"];
+        return [
+            "web" => $web,
+            "api" => $api
+        ];
+    }
 }
+
 
 
 
