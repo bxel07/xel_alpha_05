@@ -9,6 +9,7 @@ class yogi
     public function __construct(){
         return $this->instance = new xgen();
     }
+
     public function store(string $table) {
         $data = $this->instance->show($table);
         var_dump($data);
