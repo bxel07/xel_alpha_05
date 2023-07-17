@@ -2,6 +2,6 @@
 
 namespace setup\interface;
 
-interface Middleware {
+interface appMiddleware {
     public function before(): void;
 }

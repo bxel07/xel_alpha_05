@@ -1,6 +1,7 @@
 <?php
+namespace setup\system\http;
 
-class Middleware {
+class MiddlewareHttp {
     private $token;
 
     public function __construct() {
@@ -11,6 +12,10 @@ class Middleware {
 
     public function getToken() {
         return $this->token;
+    }
+
+    public function  setCookie(){
+
     }
 
     public function redirect() {
