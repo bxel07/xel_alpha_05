@@ -2,6 +2,11 @@
 
 namespace devise\Service;
 use setup\config\xgen;
+
+//handle request testing purpose only
+use GuzzleHttp\Psr7\ServerRequest;
+use GuzzleHttp\Psr7\Response;
+
 require_once __DIR__."/../../vendor/autoload.php";
 class yogi
 {
@@ -41,9 +46,27 @@ class yogi
         return $this->instance->destroy("news", 5);
     }
 
+    public function handle() {
+//        $request = ServerRequest::fromGlobals(); // Membuat objek request dari data superglobal PHP
+//
+//        // Menampilkan informasi request (contoh sederhana)
+//        echo 'HTTP Method: ' . $request->getMethod() . '<br>';
+//        echo 'URI: ' . $request->getUri() . '<br>';
+//        echo 'Headers: <pre>' . print_r($request->getHeaders(), true) . '</pre>';
+//        echo 'Query Params: <pre>' . print_r($request->getQueryParams(), true) . '</pre>';
+//
+//// Menanggapi request dengan response PSR-7
+//        $response = new Response(200, ['Content-Type' => 'text/html'], 'Hello, PSR-7!');
+//
+//// Menampilkan informasi response (contoh sederhana)
+//        echo 'Status Code: ' . $response->getStatusCode() . '<br>';
+//        echo 'Headers: <pre>' . print_r($response->getHeaders(), true) . '</pre>';
+//        echo 'Body: ' . $response->getBody();
+    }
 }
 
 $instance = new yogi();
+$instance->handle();
 /*show all data on database*/
 //
 //$instance->store("news");
