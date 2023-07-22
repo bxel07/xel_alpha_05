@@ -16,14 +16,10 @@ class xgen extends xgenconf implements appXgen{
         // TODO: Implement show() method.
     }
 
-    /**
-     * @param string $table
-     * @param int $id
-     * @return mixed
-     */
-    public function showById(string $table, int $id)
+
+    public function showById(string $table, $id)
     {
-        return $this->selectById($table, $id);
+        return $this->selectById($id, $table);
         // TODO: Implement showById() method.
     }
 
@@ -33,7 +29,7 @@ class xgen extends xgenconf implements appXgen{
      * @param int $recordId
      * @return mixed
      */
-    public function renew(array $data, string $table, int $recordId)
+    public function renew(array $data, string $table, $recordId)
     {
         return $this->update($data,$table,$recordId);
         // TODO: Implement renew() method.
@@ -41,10 +37,10 @@ class xgen extends xgenconf implements appXgen{
 
     /**
      * @param string $table
-     * @param int $id
+     * @param  $id
      * @return mixed
      */
-    public function destroy(string $table, int $id)
+    public function destroy(string $table, $id)
     {
         return $this->delete($table,$id);
         // TODO: Implement destroy() method.

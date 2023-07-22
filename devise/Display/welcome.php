@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Xel</title>
-    <link rel="stylesheet" href="../../public/css/main.css" />
-    <link rel="icon" href="../../public/tempSTR/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="<?=asset("/css/main.css");?>" />
+    <link rel="icon" href="<?=asset("/tempSTR/favicon.png");?>" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
 </head>
@@ -17,7 +20,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9 text-center">
                     <img src="../../public/tempSTR/logo.png" alt="xel_framework" id="hero-logo" />
-                    <h2>Satu untuk semua!</h2>
+                    <h2>Light weight & Secure Way Framework!</h2>
                 </div>
             </div>
 
@@ -26,7 +29,7 @@
                     data-aos-delay="200">
                     <div class="icon-box">
                         <div class="icon"><i class="ri-stack-line"></i></div>
-                        <h4 class="title"><a href="">Stone Gem</a></h4>
+                        <h4 class="title"><a href="">GemStone</a></h4>
                         <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, odio.
                         </p>
                     </div>

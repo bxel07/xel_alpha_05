@@ -25,12 +25,14 @@ class xgenconf{
         }
     }
     // select by id
-    protected function selectById(int $id, string $table) {
+    protected function selectById($id,string $table) {
         try {
+            $get = $id['id'];
+            $data = intval($get);
             $conn = $this->connection();
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt = $conn->prepare("SELECT * FROM ".$table." where id = :id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', $data, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -66,9 +68,13 @@ class xgenconf{
     }
 
     // update
-    public function update(array $data, string $table, int $recordId)
+    public function update(array $data, string $table, $recordId)
     {
         try {
+            $get = $recordId['id'];
+
+            $item = intval($get);
+
             $conn = $this->connection();
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -88,7 +94,7 @@ class xgenconf{
             }
 
             // Bind the recordId to the placeholder :record_id
-            $stmt->bindValue(":record_id", $recordId, PDO::PARAM_INT);
+            $stmt->bindValue(":record_id", $item, PDO::PARAM_INT);
 
             $stmt->execute();
             echo "Query successful";
@@ -98,12 +104,14 @@ class xgenconf{
     }
 
     // delete
-    protected function delete(string $table, int $id) {
+    protected function delete(string $table, $id) {
         try {
+            $get = $id['id'];
+            $data = intval($get);
             $conn = $this->connection();
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt = $conn->prepare("DELETE FROM ".$table." where id = :id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $data, PDO::PARAM_INT);
             $stmt->execute();
         } catch (\PDOException $exception) {
             echo "Query error: " . $exception->getMessage();
