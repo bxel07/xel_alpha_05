@@ -40,7 +40,6 @@ class yogi
     public function delete() {
         return $this->instance->destroy("news", 5);
     }
-
 }
 
 $instance = new yogi();

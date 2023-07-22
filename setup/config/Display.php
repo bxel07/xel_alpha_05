@@ -12,5 +12,4 @@ class Display{
     public static function getDataValue(array $data, string $key) {
         return $data[$key] ?? null;
     }
-
 }
