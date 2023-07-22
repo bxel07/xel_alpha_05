@@ -50,7 +50,7 @@ $instance = new yogi();
 //$instance->store("news");
 
 /*show  data by id on database*/
-//$instance->storeById();
+$instance->storeById();
 
 /* insert  data  to database*/
 //$instance->create();
