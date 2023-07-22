@@ -25,7 +25,7 @@ class xgenconf{
         }
     }
     // select by id
-    protected function selectById(int $id, string $table) {
+    protected function selectById(string $table, int $id) {
         try {
             $conn = $this->connection();
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -40,7 +40,7 @@ class xgenconf{
     }
 
     // insert
-    protected function insertdata(array $data, string $table) {
+    protected function insertdata(string $table, array $data) {
         try {
             $conn = $this->connection();
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -66,7 +66,7 @@ class xgenconf{
     }
 
     // update
-    public function update(array $data, string $table, int $recordId)
+    public function update(string $table, array $data , int $recordId)
     {
         try {
             $conn = $this->connection();

@@ -3,6 +3,7 @@
 //    require_once __DIR__.'/../vendor/autoload.php';
     use PHPUnit\Framework\TestCase;
     use setup\config\bootstrap;
+    require_once __DIR__."/../../vendor/autoload.php";
     
     Class Angga extends TestCase
     {

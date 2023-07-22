@@ -14,6 +14,7 @@ class yogi
     public function __construct(){
         return $this->instance = new xgen();
     }
+
     public function store(string $table) {
         $data = $this->instance->show($table);
         var_dump($data);
@@ -26,24 +27,24 @@ class yogi
 
     public function create() {
         $insert = [
-            "title" => "xel",
-            "content" => "xel framework"
+            "title" => "xelp",
+            "content" => "xxel framework"
         ];
 
-        return $this->instance->insert($insert,"news");
+        return $this->instance->insert("news", $insert);
     }
 
     public function edit() {
         $insert = [
-            "title" => "xeldom",
+            "title" => "xeldoma",
             "content" => "xeldom framework"
         ];
 
-        return $this->instance->renew($insert,"news",5);
+        return $this->instance->renew("news",$insert,6);
     }
 
     public function delete() {
-        return $this->instance->destroy("news", 5);
+        return $this->instance->destroy("news", 4);
     }
 
     public function handle() {
@@ -72,7 +73,7 @@ $instance->handle();
 //$instance->store("news");
 
 /*show  data by id on database*/
-//$instance->storeById();
+$instance->storeById();
 
 /* insert  data  to database*/
 //$instance->create();
