@@ -2,7 +2,7 @@
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule (.*) index.php/$1
+    RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
 # block files which needs to be hidden, specify .example extension of the file
 <Files ~ "\.(env|json|config.js|md|gitignore|gitattributes|lock|phpunit.result)$">
