@@ -33,9 +33,9 @@ class xgen extends xgenconf implements appXgen{
      * @param int $recordId
      * @return mixed
      */
-    public function renew(array $data, string $table, int $recordId)
+    public function renew(string $table, array $data, int $recordId)
     {
-        return $this->update($data,$table,$recordId);
+        return $this->update($table,$data,$recordId);
         // TODO: Implement renew() method.
     }
 
@@ -55,9 +55,9 @@ class xgen extends xgenconf implements appXgen{
      * @param string $table
      * @return mixed
      */
-    public function insert(array $data, string $table)
+    public function insert(string $table, array $data)
     {
-        return $this->insertdata($data,$table);
+        return $this->insertdata($table, $data);
         // TODO: Implement insert() method.
     }
 }
