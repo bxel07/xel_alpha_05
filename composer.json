@@ -20,13 +20,13 @@
     ],
     "require": {
         "php" :">=8",
-        "react/event-loop": "^1.1",
-        "react/http": "1.6",
         "vlucas/phpdotenv": "^5.5",
         "phpunit/phpunit": "^10.2",
         "psr/http-message": "^1.1",
         "guzzlehttp/psr7": "^2.5",
         "psr/http-server-handler": "^1.0",
-        "guzzlehttp/guzzle": "^7.7"
+        "guzzlehttp/guzzle": "^7.7",
+        "symfony/cache": "^6.3",
+        "xel/gemstone": "v1.0"
     }
 }

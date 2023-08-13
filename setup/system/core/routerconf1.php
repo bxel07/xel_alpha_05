@@ -24,9 +24,14 @@ class routerconf1
 
         $fullPath = $prefixpath . $path;
 
-        if($controller[0] !== '\\') {
+        if($controller[0] !== 'd') {
             $controller = '\\devise\\Service\\'. $controller;
+        }elseif ($controller[0] === 'd') {
+            $controller = '\\devise\\Service\\Gemstone\\'. $controller;
         }
+
+
+
 
         $this->routes[] = [
             'method' => $method,
@@ -35,6 +40,7 @@ class routerconf1
             'function' => $function,
             'middleware' => $middleware
         ];
+//        var_dump($this->routes);
     }
 
     // main runner
@@ -53,6 +59,7 @@ class routerconf1
         } catch (\Exception $e) {
             $this->handleError($e);
         }
+        exit();
     }
 
     // Validating Pregmatch for routing

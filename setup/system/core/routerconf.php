@@ -35,7 +35,7 @@ class routerconf{
             'middleware' => $middleware
         ];
         echo "<pre>";
-        var_dump(self::$routes);
+        //var_dump(self::$routes);
     }
 
     // main runner

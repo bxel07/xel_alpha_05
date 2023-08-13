@@ -1,0 +1,14 @@
+{
+    "original_values": {
+        "Diamond": 2634328,
+        "Ruby": 678641.25,
+        "Sapphire": 536565.63,
+        "Lapis Lazuli": 99343.5
+    },
+    "rounded_values": {
+        "Diamond": 2634328,
+        "Ruby": 678641,
+        "Sapphire": 536566,
+        "Lapis Lazuli": 99344
+    }
+}
