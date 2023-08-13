@@ -1,8 +1,12 @@
 <?php
-    /* Collection of helper to provide more usable function and easier to maintenance
-        for file in Display folder
-     */
 
+use devise\Service\Gemstone\datacatcher;
+require_once __DIR__.'/../../vendor/autoload.php';
+/**
+ * @param string $path
+ * @return string
+ * Shorthand function to including css or file on public directory
+ */
 function asset(string $path): string
 {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
@@ -16,5 +20,33 @@ function asset(string $path): string
     return rtrim($baseurl, '/').str_replace($basepath,'',$sanitizedpath);
 }
 
+function route_post(string $data, string $param): string
+{
+    // Start the session
+    session_start();
+
+    // Set the samesite attribute for the session cookie
+    ini_set('session.cookie_samesite', 'Strict');
+
+    // Capture output buffering
+    ob_start();
+
+    // Your code to modify session data
+    $x = explode('.', $data);
+    $_SESSION['url_patch'] = htmlspecialchars($x[1], ENT_QUOTES, 'UTF-8');
+
+    // param
+    $_SESSION['param'] =htmlspecialchars($param, ENT_QUOTES, 'UTF-8');
+
+    // Get and clean the output buffer
+    $output = ob_get_clean();
+
+    // Close the session
+    session_write_close();
+
+    // Return the sanitized value
+    return htmlspecialchars($x[0], ENT_QUOTES, 'UTF-8') . $output;
+
+}
 
 
