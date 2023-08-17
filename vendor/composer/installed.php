@@ -3,7 +3,7 @@
         'name' => 'xel/framework',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '41190be6a6c65e13b5e28194cb4646694017a0e4',
+        'reference' => '76b5b43a6a31bd2a60798193148881ecfa19a6a5',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -535,7 +535,7 @@
         'xel/framework' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '41190be6a6c65e13b5e28194cb4646694017a0e4',
+            'reference' => '76b5b43a6a31bd2a60798193148881ecfa19a6a5',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
