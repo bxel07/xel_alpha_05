@@ -25,11 +25,10 @@ function route_post(string $data, string $param): string
     // Start the session
     session_start();
 
-    // Set the samesite attribute for the session cookie
+    // Set the same site attribute for the session cookie
     ini_set('session.cookie_samesite', 'Strict');
 
     // Capture output buffering
-    ob_start();
 
     // Your code to modify session data
     $x = explode('.', $data);
@@ -39,13 +38,12 @@ function route_post(string $data, string $param): string
     $_SESSION['param'] =htmlspecialchars($param, ENT_QUOTES, 'UTF-8');
 
     // Get and clean the output buffer
-    $output = ob_get_clean();
 
     // Close the session
     session_write_close();
 
     // Return the sanitized value
-    return htmlspecialchars($x[0], ENT_QUOTES, 'UTF-8') . $output;
+    return '/'.htmlspecialchars($x[0], ENT_QUOTES, 'UTF-8');
 
 }
 

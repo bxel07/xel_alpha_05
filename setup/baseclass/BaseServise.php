@@ -7,22 +7,22 @@ use setup\config\Display;
 
 use Gemstone\main;
 class BaseServise{
-    protected $conn;
+    protected \PDO $conn;
 
-    protected $decrptor;
+    protected main $descriptors;
 
-    public function __construct() {
-        $conn = new BaseConn();
-        $this->conn = $conn->getPDO();
-        $this->decrptor = new main();
+    public function __construct(BaseConn $baseConn, main $descriptors) {
+        $this->conn = $baseConn->getPDO();
+        $this->descriptors = $descriptors;
     }
 
-    public function render(string $path ='', array $data = [], string $name = '') {
+    public function render(string $path ='', array $data = [], string $name = ''): void
+    {
         Display::render($path, $data, $name);
-        //echo $displayData->content;
     }
 
-    public function redirect(string $url, string $message, $data, int $statusCode = 302) {
+    public function redirect(string $url, string $message, $data, int $statusCode = 302): void
+    {
         Display::redirectWithMessage($url,$message, $data ,$statusCode);
     }
 

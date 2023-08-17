@@ -27,6 +27,7 @@
         "psr/http-server-handler": "^1.0",
         "guzzlehttp/guzzle": "^7.7",
         "symfony/cache": "^6.3",
-        "xel/gemstone": "v1.0"
+        "xel/gemstone": "v1.0",
+        "psr/container": "^2.0"
     }
 }

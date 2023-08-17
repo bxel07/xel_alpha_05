@@ -2,9 +2,18 @@
 
 namespace setup\system\core;
 
+use setup\system\di\dependencyinjector;
+
 class routerconf1
 {
     protected  array $routes = [];
+    protected dependencyinjector $container;
+
+    public function __construct(dependencyinjector $dependencyinjector)
+    {
+        $this->container = $dependencyinjector;
+    }
+
     // main logic to controller method path for invoke and navigate url
     protected  function add(string $prefix, string $method, string $path, string $controller, string $function, array $middleware = []): void {
 
@@ -24,14 +33,11 @@ class routerconf1
 
         $fullPath = $prefixpath . $path;
 
-        if($controller[0] !== 'd') {
-            $controller = '\\devise\\Service\\'. $controller;
-        }elseif ($controller[0] === 'd') {
-            $controller = '\\devise\\Service\\Gemstone\\'. $controller;
-        }
-
-
-
+//        if($controller[0] !== 'd') {
+//            $controller = '\\devise\\Service\\'. $controller;
+//        }elseif ($controller[0] === 'd') {
+//            $controller = '\\devise\\Service\\Gemstone\\'. $controller;
+//        }
 
         $this->routes[] = [
             'method' => $method,
@@ -40,7 +46,6 @@ class routerconf1
             'function' => $function,
             'middleware' => $middleware
         ];
-//        var_dump($this->routes);
     }
 
     // main runner
@@ -66,8 +71,6 @@ class routerconf1
     protected  function matchRoute(string $path, string $method): ?array {
         foreach ($this->routes as $route) {
             $pattern = "#^" . preg_replace('/{(\w+)}/', '(?<$1>[^/]+)', $route['path']) . "$#";
-
-
             if (preg_match($pattern, $path, $variables) && $method === $route['method']) {
                 $route['variables'] = $variables;
                 return $route;
@@ -85,12 +88,39 @@ class routerconf1
         }
     }
 
-    // executing instance of controller
+    // executing instance of controller based container injector
+
+    /**
+     * @throws \ReflectionException
+     */
     protected  function executeControllerMethod(string $controllerClass, string $function, array $variables): void {
         if (class_exists($controllerClass) && method_exists($controllerClass, $function)) {
-            $controller = new $controllerClass();
+            $controller = $this->createControllerInstance($controllerClass);
             $controller->$function($variables);
         }
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    protected function createControllerInstance(string $controllerClass)
+    {
+        $reflectionClass = new \ReflectionClass($controllerClass);
+        $constructor = $reflectionClass->getConstructor();
+
+        if (!empty($controllerClass)) {
+            $dependencies = [];
+            $constructorParameters = $constructor->getParameters();
+
+            foreach ($constructorParameters as $parameter) {
+                $parameterClass = $parameter->getType();
+                if($parameterClass !== null) {
+                    $dependency = $this->container->get($parameterClass->getName());
+                    $dependencies[] = $dependency;
+                }
+            }
+        }
+        return $reflectionClass->newInstanceArgs($dependencies);
     }
 
     // error handling pagenot found
@@ -113,28 +143,15 @@ class routerconf1
 
     protected function handleError(\Exception $e): void
     {
-        $errorMessage = 'Exception: ' . $e->getMessage();
-        $errorTrace = $e->getTraceAsString();
-
-        $errorDetails = <<<EOD
-        <strong>Error Details:</strong><br>
-        Message: $errorMessage<br>
-        Trace: <br>$errorTrace
-    EOD;
+        $errorDetails = "An error occurred while processing your request. Please try again later.";
 
         $errorGuide = <<<EOD
-        <br><br>
-        <strong>Fix Guide:</strong><br>
-        1. Check if the necessary routes are properly defined in the router configuration.<br>
-        2. Ensure that the middleware array is correctly assigned with the required middleware classes.<br>
-        3. Verify that the controller and method specified in the route exist and are correctly defined.<br>
-        4. Make sure that any dependencies or required files are properly included.<br>
-        5. Double-check the request URL and HTTP method to ensure they match the defined routes.<br>
-        6. Review the error message and stack trace for any additional clues to identify the issue.<br>
-        7. If the error persists, consult the documentation or seek assistance from the development team.
-    EOD;
+            <br><br>
+            <strong>Fix Guide:</strong><br>
+            If you continue to experience issues, please contact our support team for assistance.
+        EOD;
 
         echo $errorDetails . $errorGuide;
-        exit; // Add this line to prevent further execution after displaying the error and guide.
+        exit;
     }
 }
