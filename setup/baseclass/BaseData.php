@@ -1,13 +1,19 @@
 <?php 
 namespace setup\baseclass;
-use setup\config\BaseConn;
-class BaseData{
-    public function test() {
-        echo "hello world";
-    }
+use setup\config\xgen;
+class BaseData
+{
+    /**
+     * @var mixed|xgen
+     */
 
-    public function connect() {
-        $con = new BaseConn();
-        return $con->getPDO();
+    protected mixed $query;
+
+    /**
+     * Constructor have a function to load instance of object class
+     */
+    public function __construct()
+    {
+        $this->query = new xgen();
     }
 }

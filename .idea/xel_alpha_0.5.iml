@@ -63,6 +63,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-exporter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/xel/gemstone" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-servicemanager" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-stdlib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-validator" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

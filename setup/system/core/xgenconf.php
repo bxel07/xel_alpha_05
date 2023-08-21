@@ -11,7 +11,7 @@ class xgenconf{
     }
 
     // select all
-    protected function selectAll(string $table) {
+   protected function selectAll(string $table) {
 
         try {
             $conn = $this->connection();
@@ -66,7 +66,7 @@ class xgenconf{
     }
 
     // update
-    public function update(string $table, array $data , int $recordId)
+    protected function update(string $table, array $data , int $recordId)
     {
         try {
             $conn = $this->connection();

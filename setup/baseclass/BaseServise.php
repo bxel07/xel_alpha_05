@@ -21,12 +21,17 @@ class BaseServise{
         Display::render($path, $data, $name);
     }
 
-    public function redirect(string $url, string $message, $data, int $statusCode = 302): void
+    public function RedirectWithData(string $url, string $message = '', $data =[], int $statusCode = 302): void
     {
         Display::redirectWithMessage($url,$message, $data ,$statusCode);
     }
 
-    public function xgen(): xgen
+    public function redirect($url): void
+    {
+        Display::redirect($url);
+    }
+
+    public function query(): xgen
     {
         return new xgen();
     }

@@ -80,10 +80,14 @@ class routerconf1
         return null;
     }
 
-    // if available running instance of middleware
+    /**
+     * @param array $middleware
+     * @return void
+     */
     protected  function runMiddleware(array $middleware): void {
         foreach ($middleware as $middlewareClass) {
-            $instance = new $middlewareClass;
+//            $instance = new $middlewareClass;
+            $instance = $this->createControllerInstance($middlewareClass);
             $instance->before();
         }
     }
