@@ -3,13 +3,19 @@
         'name' => 'xel/framework',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '76b5b43a6a31bd2a60798193148881ecfa19a6a5',
+        'reference' => '699bc6fc6a09a9b4244670e8ae1144620d4eb4cd',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'container-interop/container-interop' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '^1.2.0',
+            ),
+        ),
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.1.1',
             'version' => '1.1.1.0',
@@ -43,6 +49,33 @@
             'reference' => '8bd7c33a0734ae1c5d074360512beb716bef3f77',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/psr7',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laminas/laminas-servicemanager' => array(
+            'pretty_version' => '3.15.0',
+            'version' => '3.15.0.0',
+            'reference' => '65910ef6a8066b0369fab77fbec9e030be59c866',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-servicemanager',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laminas/laminas-stdlib' => array(
+            'pretty_version' => '3.17.0',
+            'version' => '3.17.0.0',
+            'reference' => 'dd35c868075bad80b6718959740913e178eb4274',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-stdlib',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laminas/laminas-validator' => array(
+            'pretty_version' => '2.30.1',
+            'version' => '2.30.1.0',
+            'reference' => 'b7d217b5e4951955fda9a3a5ada91b717b5c8d5c',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-validator',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -177,6 +210,12 @@
             'install_path' => __DIR__ . '/../psr/container',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'psr/container-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '^1.1 || ^2.0',
+            ),
         ),
         'psr/http-client' => array(
             'pretty_version' => '1.0.2',
@@ -535,7 +574,7 @@
         'xel/framework' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '76b5b43a6a31bd2a60798193148881ecfa19a6a5',
+            'reference' => '699bc6fc6a09a9b4244670e8ae1144620d4eb4cd',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

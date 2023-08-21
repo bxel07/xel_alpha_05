@@ -2,6 +2,7 @@
 
 namespace setup\config;
 use \Gemstone\main;
+use JetBrains\PhpStorm\NoReturn;
 use stdClass;
 
 class Display {
@@ -42,7 +43,7 @@ class Display {
      * @return void
      * Redirect function with session to store data
      */
-    public static function redirectWithMessage(string $url, string $message, array $data, int $statusCode = 302): void
+    #[NoReturn] public static function redirectWithMessage(string $url, string $message ='', array $data =[], int $statusCode = 302): void
     {
 
         // Set session cookie parameters including the SameSite attribute
@@ -51,7 +52,7 @@ class Display {
             'path' => '/',
             'secure' => false, // Set to false for testing on localhost
             'httponly' => true,
-            'samesite' => 'Lax', // or 'None' for testing on localhost, but use cautiously
+            'samesite' => 'Strict', // or 'None' for testing on localhost, but use cautiously
         ]);
 
         //storing data to session
@@ -66,18 +67,28 @@ class Display {
         exit(); // Make sure to exit the script after sending the redirect header
     }
 
+    public static function redirect($url): void
+    {
+        header("Location: $url");
+    }
+
     /**
      * @param array $data
      * @return array
      * Sanitize data using htmlspecialchars  to prevent injected script
      */
-    public static function  sanitize(array $data) {
-        $sanitizedData = [];
+    public static function  sanitize($data) {
+        if(is_array($data)) {
+            $sanitizedData = [];
 
-        foreach ($data as $key => $value) {
-            $sanitizedData[$key] =  htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+            foreach ($data as $key => $value) {
+                $sanitizedData[$key] =  self::sanitize($value);
+            }
+
+            return $sanitizedData;
+        }else {
+            return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
         }
-       return $sanitizedData;
     }
 
     /**
@@ -85,7 +96,8 @@ class Display {
      * @return mixed|stdClass
      * convert data array to object
      */
-    public static function arrayToObject($data) {
+    public static function arrayToObject($data): mixed
+    {
         if (is_array($data)) {
             $object = new stdClass();
             foreach ($data as $key => $value) {

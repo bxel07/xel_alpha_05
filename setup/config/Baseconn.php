@@ -39,4 +39,3 @@ class BaseConn {
         return $this->pdo;
     }
 }
-?>

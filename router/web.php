@@ -2,7 +2,6 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use setup\config\routerv1;
-use setup\middleware\Auth;
 use setup\system\di\dependencyinjector;
 new setup\config\bootstrap();
 
@@ -12,27 +11,35 @@ new setup\config\bootstrap();
 
 $container = new dependencyinjector();
 $router = new routerv1($container);
+
+/**
+ * Setup Prefix for non Api Router
+ */
 $router->setPrefix("web");
 
 /**
- * Part of Gemstone Processor for getting the data
+ * Part of Gemstone Processor for getting the data by default
  */
 
 $router->post('/GemstonePatch', \devise\Service\Gemstone\datacatcher::class, 'index');
 /**
- * Standard router prefix
+ * Standard starter router prefix
  */
-
 $router->get('/', \devise\Service\Service::class, 'index');
-$router->get('/test', \devise\Service\Service::class,'test');
-$router->get('/test1', \devise\Service\Service::class,'test1');
 
 /**
  * Router auth prefix
  */
 
-//$router->get('/dashboard', \Auth\Autenctication::class, 'index');
-//$router->get('/register', \Auth\Autenctication::class, 'register');
-//$router->get('/login', \Auth\Autenctication::class, 'login');
+$router->get('/register', \devise\Service\Auth\Authentication::class, 'register');
+$router->get('/login', \devise\Service\Auth\Authentication::class, 'login');
+$router->get('/dologin', \devise\Service\Auth\Authentication::class, 'do_login');
+$router->get('/doregister', \devise\Service\Auth\Authentication::class, 'do_register');
 
+
+/**
+ * Admin Dashboard Router
+ */
+$router->get('/auth/dashboard', \devise\Service\Dashboard\dashboard::class, 'index',[\devise\Middleware\AuthMiddleware::class]);
+$router->post('/logout' , \devise\Service\Auth\Authentication::class, 'logout');
 $router->exec();
