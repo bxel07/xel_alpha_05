@@ -38,7 +38,7 @@ class  Authentication extends BaseServise {
         $data = $this->handler->request();
 
         //query data
-        $this->xgen()->insert('users', [
+        $this->query()->insert('users', [
             "username" => $data->username ,
             "email" => $data->email,
             "password" => $data->password
