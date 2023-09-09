@@ -1,2 +1,0 @@
-# Ignore .idea folder
-git rm --cached .idea/
