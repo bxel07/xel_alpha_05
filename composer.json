@@ -29,6 +29,7 @@
         "symfony/cache": "^6.3",
         "xel/gemstone": "v1.0",
         "psr/container": "^2.0",
-        "laminas/laminas-validator": "^2.30"
+        "laminas/laminas-validator": "^2.30",
+      "ext-pdo": "*"
     }
 }

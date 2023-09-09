@@ -3,26 +3,20 @@
 namespace devise\Service\Gemstone;
 use \Gemstone\main;
 use \setup\config\Display;
+use setup\config\http;
+use setup\system\core\Router\AttributeCollections\Route;
 
 class datacatcher {
 
     protected main $gem;
 
-    /**
-     * @param main $gem
-     * With inject instance class of Gemstone
-     */
-
-    public function __construct(main $gem)
+    public function __construct()
     {
-        $this->gem = $gem;
+        $this->gem = new main();
     }
 
-    /**
-     * @throws \Exception
-     * Index merupakan base function yang digunakan sebagai antarmuka dari proses validasi keamanaan csrf,
-     * sanitasi data, enkripsi, dan redirect data
-     */
+
+    #[Route(uri: '/GemstonePatch',RequestMethod:http::POST )]
     public function index(): void
     {
         session_start();
@@ -53,7 +47,6 @@ class datacatcher {
         }
 
         session_destroy();
-
     }
 
     /**

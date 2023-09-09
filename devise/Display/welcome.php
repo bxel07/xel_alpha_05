@@ -24,8 +24,8 @@
                     data-aos-delay="200">
                     <div class="icon-box">
                         <div class="icon"><i class="ri-stack-line"></i></div>
-                        <h4 class="title"><a href="">Stone Gem</a></h4>
-                        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, odio.
+                        <h4 class="title"><a href="">Gem Stone</a></h4>
+                        <p class="description"> Automations Handling data Transmission With auto Mitigation CSRF, XSS, Hijacking, and sanitizing data
                         </p>
                     </div>
                 </div>
@@ -35,8 +35,7 @@
                     <div class="icon-box">
                         <div class="icon"><i class="ri-palette-line"></i></div>
                         <h4 class="title"><a href="">Xgen Query</a></h4>
-                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
-                            dignissimos.</p>
+                        <p class="description">Simple Query Builder To Make Easy Your Task</p>
                     </div>
                 </div>
 
@@ -45,8 +44,7 @@
                     <div class="icon-box">
                         <div class="icon"><i class="ri-command-line"></i></div>
                         <h4 class="title"><a href="">3 Layers Security Data</a></h4>
-                        <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis,
-                            odit?</p>
+                        <p class="description">Early Handling Data with more Secure and Ready to use if you needed</p>
                     </div>
                 </div>
 
@@ -54,9 +52,8 @@
                     data-aos-delay="500">
                     <div class="icon-box">
                         <div class="icon"><i class="ri-fingerprint-line"></i></div>
-                        <h4 class="title"><a href="">SHA256 Encryption</a></h4>
-                        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique,
-                            inventore.</p>
+                        <h4 class="title"><a href="">Dynamic Router Attribute</a></h4>
+                        <p class="description">Dynamic Automations Router Attribute to make easy way to route your way</p>
                     </div>
                 </div>
             </div>
@@ -64,7 +61,7 @@
     </section>
     <div class="container">
         <div class="footer text-end">
-            <p>Xel vAlpha0.4 (PHP v8.1.4)</p>
+            <p>Xel vAlpha0.7 (PHP v8.1.4)</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

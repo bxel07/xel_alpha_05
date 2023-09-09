@@ -4,6 +4,7 @@ namespace Spatie\Async\Runtime;
 
 use Closure;
 use Laravel\SerializableClosure\SerializableClosure;
+use Spatie\Async\FileTask;
 use Spatie\Async\Pool;
 use Spatie\Async\Process\ParallelProcess;
 use Spatie\Async\Process\Runnable;
@@ -29,10 +30,10 @@ class ParentRuntime
     {
         if (! $autoloader) {
             $existingAutoloaderFiles = array_filter([
-                __DIR__.'/../../../../autoload.php',
-                __DIR__.'/../../../autoload.php',
-                __DIR__.'/../../vendor/autoload.php',
-                __DIR__.'/../../../vendor/autoload.php',
+                __DIR__ . '/../../../../autoload.php',
+                __DIR__ . '/../../../autoload.php',
+                __DIR__ . '/../../vendor/autoload.php',
+                __DIR__ . '/../../../vendor/autoload.php',
             ], function (string $path) {
                 return file_exists($path);
             });
@@ -41,7 +42,7 @@ class ParentRuntime
         }
 
         self::$autoloader = $autoloader;
-        self::$childProcessScript = __DIR__.'/ChildRuntime.php';
+        self::$childProcessScript = __DIR__ . '/ChildRuntime.php';
 
         self::$isInitialised = true;
     }
@@ -52,7 +53,7 @@ class ParentRuntime
      *
      * @return \Spatie\Async\Process\Runnable
      */
-    public static function createProcess($task, ?int $outputLength = null, ?string $binary = 'php'): Runnable
+    public static function createProcess($task, ?int $outputLength = null, ?string $binary = 'php', ?int $max_input_size = 100000): Runnable
     {
         if (! self::$isInitialised) {
             self::init();
@@ -66,7 +67,7 @@ class ParentRuntime
             $binary,
             self::$childProcessScript,
             self::$autoloader,
-            self::encodeTask($task),
+            self::encodeTask($task, $max_input_size),
             $outputLength,
         ]);
 
@@ -78,18 +79,36 @@ class ParentRuntime
      *
      * @return string
      */
-    public static function encodeTask($task): string
+    public static function encodeTask($task, ?int $maxTaskPayloadInBytes = 100000): string
     {
         if ($task instanceof Closure) {
             $task = new SerializableClosure($task);
         }
 
-        return base64_encode(serialize($task));
+        $serializedTask = base64_encode(serialize($task));
+
+        if (strlen($serializedTask) > $maxTaskPayloadInBytes) {
+            // Write the serialized task to a temporary file and package it as a `FileTask`:
+            $filename = tempnam(sys_get_temp_dir(), 'spatie_async_task_');
+            file_put_contents($filename, $serializedTask);
+            $file_task = new FileTask($filename);
+            $serializedTask = base64_encode(serialize($file_task));
+        }
+
+        return $serializedTask;
     }
 
     public static function decodeTask(string $task)
     {
-        return unserialize(base64_decode($task));
+        $decodedTask = unserialize(base64_decode($task));
+
+        if (get_class($decodedTask) === 'Spatie\Async\FileTask') {
+            $filename = $decodedTask->file;
+            $decodedTask = unserialize(base64_decode(file_get_contents($filename)));
+            unlink($filename);
+        }
+
+        return $decodedTask;
     }
 
     protected static function getId(): string
@@ -100,6 +119,6 @@ class ParentRuntime
 
         self::$currentId += 1;
 
-        return (string) self::$currentId.(string) self::$myPid;
+        return (string)self::$currentId . (string)self::$myPid;
     }
 }

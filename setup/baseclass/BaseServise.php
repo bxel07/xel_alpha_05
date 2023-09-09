@@ -1,19 +1,15 @@
 <?php
 
 namespace setup\baseclass;
-use setup\config\BaseConn;
-use setup\config\xgen;
+use setup\config\RequestHandler;
 use setup\config\Display;
 
-use Gemstone\main;
 class BaseServise{
-    protected \PDO $conn;
 
-    protected main $descriptors;
+    public function __construct(
+        protected RequestHandler $requestHandler,
+    ) {
 
-    public function __construct(BaseConn $baseConn, main $descriptors) {
-        $this->conn = $baseConn->getPDO();
-        $this->descriptors = $descriptors;
     }
 
     public function render(string $path ='', array $data = [], string $name = ''): void
@@ -30,11 +26,4 @@ class BaseServise{
     {
         Display::redirect($url);
     }
-
-    public function query(): xgen
-    {
-        return new xgen();
-    }
-
-
 }
