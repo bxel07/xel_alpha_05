@@ -955,6 +955,7 @@ return array(
     'SebastianBergmann\\CodeCoverage\\Driver\\XdebugNotAvailableException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/XdebugNotAvailableException.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\XdebugNotEnabledException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/XdebugNotEnabledException.php',
     'SebastianBergmann\\CodeCoverage\\Exception' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/Exception.php',
+    'SebastianBergmann\\CodeCoverage\\FileCouldNotBeWrittenException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/FileCouldNotBeWrittenException.php',
     'SebastianBergmann\\CodeCoverage\\Filter' => $vendorDir . '/phpunit/php-code-coverage/src/Filter.php',
     'SebastianBergmann\\CodeCoverage\\InvalidArgumentException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/InvalidArgumentException.php',
     'SebastianBergmann\\CodeCoverage\\NoCodeCoverageDriverAvailableException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/NoCodeCoverageDriverAvailableException.php',

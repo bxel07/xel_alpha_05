@@ -3,16 +3,20 @@
 namespace setup\system\di;
 
 use Psr\Container\ContainerInterface;
+use ReflectionException;
 
 class dependencyinjector implements ContainerInterface
 {
     protected $bindings = [];
 
-    public function bind(string $abstract, $concrete)
+    public function bind(string $abstract, $concrete): void
     {
         $this->bindings[$abstract] = $concrete;
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function get($abstract)
     {
         if (isset($this->bindings[$abstract])) {
@@ -27,7 +31,7 @@ class dependencyinjector implements ContainerInterface
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function resolve($concrete)
     {
@@ -43,7 +47,7 @@ class dependencyinjector implements ContainerInterface
         return $reflectionClass->newInstanceArgs($dependencies);
     }
 
-    protected function resolveDependencies(array $dependencies)
+    protected function resolveDependencies(array $dependencies): array
     {
         $resolvedDependencies = [];
         foreach ($dependencies as $parameter) {
@@ -59,5 +63,6 @@ class dependencyinjector implements ContainerInterface
     public function has(string $id): bool
     {
         // TODO: Implement has() method.
+        return 0;
     }
 }

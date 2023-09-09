@@ -1,8 +1,6 @@
 <html>
 <form action="<?= route_post('GemstonePatch.test1', 'Diamond');?>" method="post" enctype="multipart/form-data">
     <?= getcsrf() ;?>
-    <?= method('PUT');?>
-
 
     <label for="fname">First name:</label><br>
     <input type="text" id="fname" name="fname"><br>
