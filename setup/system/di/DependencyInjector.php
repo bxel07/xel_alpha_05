@@ -3,11 +3,12 @@
 namespace setup\system\di;
 
 use Psr\Container\ContainerInterface;
+use ReflectionClass;
 use ReflectionException;
 
-class dependencyinjector implements ContainerInterface
+class DependencyInjector implements ContainerInterface
 {
-    protected $bindings = [];
+    protected array $bindings = [];
 
     public function bind(string $abstract, $concrete): void
     {
@@ -17,17 +18,17 @@ class dependencyinjector implements ContainerInterface
     /**
      * @throws ReflectionException
      */
-    public function get($abstract)
+    public function get(string $id)
     {
-        if (isset($this->bindings[$abstract])) {
-            $concrete = $this->bindings[$abstract];
+        if (isset($this->bindings[$id])) {
+            $concrete = $this->bindings[$id];
             if (is_callable($concrete)) {
                 return $concrete($this);
             }
             return $this->resolve($concrete);
         }
 
-        return $this->resolve($abstract);
+        return $this->resolve($id);
     }
 
     /**
@@ -35,7 +36,7 @@ class dependencyinjector implements ContainerInterface
      */
     protected function resolve($concrete)
     {
-        $reflectionClass = new \ReflectionClass($concrete);
+        $reflectionClass = new ReflectionClass($concrete);
         $constructor = $reflectionClass->getConstructor();
 
         if ($constructor === null) {
@@ -47,6 +48,9 @@ class dependencyinjector implements ContainerInterface
         return $reflectionClass->newInstanceArgs($dependencies);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     protected function resolveDependencies(array $dependencies): array
     {
         $resolvedDependencies = [];
