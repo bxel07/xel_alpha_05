@@ -10,8 +10,8 @@ class Route
     (
         public string $uri,
         public string $RequestMethod,
+        public array $Middleware = [],
         public int|bool $VRoute = 1,
-        public int|bool $GroupRouter = 1
     )
     {
 
