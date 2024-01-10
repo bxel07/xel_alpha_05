@@ -1,22 +1,24 @@
 <?php
 
 namespace devise\Service\Gemstone;
-use \Gemstone\main;
-use \setup\config\Display;
+use Exception;
+use Gemstone\main;
+use setup\config\Display;
 use setup\config\http;
 use setup\system\core\Router\AttributeCollections\Route;
 
 class datacatcher {
 
-    protected main $gem;
+    public function __construct
+    (
+        protected main $gem
+    )
+    {}
 
-    public function __construct()
-    {
-        $this->gem = new main();
-    }
-
-
-    #[Route(uri: '/GemstonePatch',RequestMethod:http::POST )]
+    /**
+     * @throws Exception
+     */
+    #[Route(uri: '/GemstonePatch', RequestMethod:http::POST)]
     public function index(): void
     {
         session_start();
@@ -42,15 +44,15 @@ class datacatcher {
             session_regenerate_id(true);
             session_write_close();
             // Set more permissive Content Security Policy for localhost development
-            header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval';");
-            Display::redirectWithMessage($url, 'Data processed successfully.', $wrapper);
+           header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval';");
+           Display::redirectWithMessage($url, 'Data processed successfully.', $wrapper);
         }
 
         session_destroy();
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      * merupakan antarmuka untuk menampung data array sementara sebelum data di sanitasi
      */
     public function sazitize(array $data): array
@@ -66,7 +68,7 @@ class datacatcher {
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      * melakukan sanitasi per nilai array yang di ekstract dalam bentung string,
      * kemudian nilainya akan dkembalikan lagi sebagai array berdasarkan indexnya
      */

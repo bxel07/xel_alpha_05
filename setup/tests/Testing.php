@@ -7,6 +7,7 @@
     {
         public function testCoba()
         {
+
             $test = 'halo';
 
             $this->assertEquals('halo', $test);
